@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {View,Text,StyleSheet,TouchableOpacity,Image,ScrollView,Button} from 'react-native'
 import {kNavBarHeightIOS,kScreenWidth} from '../../common/util/ScreenUtil'
 import {HomeComponent} from './component/HomeComponent'
+import HotPage from './component/hotComponent/HotPage'
+import FocuesView from './component/focuesComponent/FocuesView'
+import TopocPage from './component/TopicComponent/TopocPage'
 
 const titleArr = [
     {name:'运动圈'},
@@ -62,10 +65,9 @@ export default class Home extends Component {
                     showsHorizontalScrollIndicator>
 
                     <HomeComponent/>
-                    <View style={style.subView}><Text style={{fontSize:30}}>1</Text></View>
-                    <View style={style.subView}><Text style={{fontSize:30}}>2</Text></View>
-                    <View style={style.subView}><Text style={{fontSize:30}}>3</Text></View>
-                    <View style={style.subView}><Text style={{fontSize:30}}>4</Text></View>
+                    <HotPage />
+                    <FocuesView />
+                    <TopocPage />
                 </ScrollView>
             </View>
         )
@@ -137,7 +139,6 @@ const style = StyleSheet.create({
     scrollViewStyle:{
         flexDirection:'row',
         flex:1,
-        backgroundColor:'red'
     },
     subView:{
         width:kScreenWidth,

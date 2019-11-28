@@ -3,17 +3,21 @@
 import React, { Component } from 'react'
 import {StyleSheet,View,TouchableOpacity, FlatList,Image,Text} from 'react-native'
 import { kScreenWidth } from '../../../common/util/ScreenUtil'
+import  NearByTeamItem from './NearByTeamItem'
 
 export default class NearByTeam extends Component {
 
     state={
-        data:[{title:'1111',name:'ssssss',head:'1111'}]
+        data:[{title:'艾薇儿',name:'等待瑜伽中',head:'1111'},
+        {title:'汤姆克鲁斯',name:'等待瑜伽中',head:'1111'},
+        {title:'艾薇儿',name:'等待瑜伽中',head:'1111'},
+        {title:'汤姆克鲁斯',name:'等待瑜伽中',head:'1111'}]
     }
 
-    
+    _renderItem =(item,index) => {
+        return <NearByTeamItem {...item} key={index} key={index}>
 
-    componentDidMount(){
-        this.test()
+        </NearByTeamItem>
     }
 
     render() {
@@ -27,8 +31,12 @@ export default class NearByTeam extends Component {
                     </TouchableOpacity>
                 </View>
                 <FlatList
-                    horizontal={true}>
-
+                    style={style.flatListStyle}
+                    horizontal={true}
+                    data={this.state.data}
+                    renderItem={this._renderItem}
+                    showsHorizontalScrollIndicator={false}
+                    >
                 </FlatList>
             </View>
         )

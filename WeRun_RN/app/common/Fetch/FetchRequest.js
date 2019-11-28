@@ -1,12 +1,14 @@
 import { fetch } from 'whatwg-fetch';
 
-const baseUrl = "http://rap2api.taobao.org/app/mock/235316"
+// const baseUrl = "http://rap2api.taobao.org/app/mock/235316"
+// const baseUrl = "http://192.168.70.47:8819"
+const baseUrl = "http://192.168.100.150:8700"
+const SuccessKey = '1'
 
 export default class FetchRequest {
     
      static requestDataWithType(url='',type='',parameter={},successCallBack,failCallBack){
         
-        console.log('1111')
         //拼接请求字符串
         const requestUrl = baseUrl + url;
         if (type == 'GET') {
@@ -33,13 +35,17 @@ export default class FetchRequest {
         }
 
         if (type == 'POST') {
-            requestConfig['body'] =  parameter
+            let formdata = new FormData();
+            for (const key in parameter) {
+                formdata.append(key,parameter[key])
+            }
+            requestConfig['body'] =  formdata
         }
 
         fetch(requestUrl,requestConfig)
         .then((response)=>response.json())
         .then((responseJson)=>{
-            if (responseJson.code == '200') {
+            if (responseJson.code == SuccessKey) {
                 successCallBack(responseJson)
             } else{
                 failCallBack(responseJson)
